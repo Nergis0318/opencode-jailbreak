@@ -1,0 +1,16 @@
+{
+  "name": "opencode-jailbreak",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "scripts": {
+    "test": "bun test",
+    "smoke": "bun smoke.ts"
+  },
+  "devDependencies": {
+    "@opencode/plugin": "2.0.28",
+    "@types/bun": "^1.4.3"
+  }
+}
