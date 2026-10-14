@@ -1,4 +1,4 @@
-import { Plugin } from "@opencode/plugin"
+import type { Context } from "@opencode/plugin"
 import { REPO_FILES, bestMatch, pickFiles } from "./match"
 
 // Injects the jailbreak file matching the session's model into the system
@@ -7,9 +7,11 @@ const REPO = "togg53192-cmd/jailbreaks"
 const TREE_URL = `https://api.github.com/repos/${REPO}/git/trees/main?recursive=1`
 const RAW_URL = `https://raw.githubusercontent.com/${REPO}/main/`
 
-export default Plugin.define({
+// Plain { id, setup } default export: no runtime imports, so the plugin works
+// installed straight from git without any dependency install step.
+export default {
   id: "opencode-jailbreaks",
-  async setup(ctx) {
+  async setup(ctx: Context) {
     let files: readonly string[] = REPO_FILES
 
     // Refresh the file list in the background; the snapshot stays until it lands.
@@ -45,4 +47,4 @@ export default Plugin.define({
       }
     })
   },
-})
+}
