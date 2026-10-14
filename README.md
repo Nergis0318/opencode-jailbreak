@@ -15,13 +15,23 @@ appends it to the system message of the outgoing request.
 
 ## Install
 
-Already wired in `~/.config/opencode/opencode.jsonc`:
-
-```jsonc
-"plugins": ["/home/nergis/Dev/opencode-jailbreak"]
+```
+opencode plugin add opencode-jailbreak@git+https://github.com/Nergis0318/opencode-jailbreak.git
 ```
 
-After editing plugin code: `opencode service restart`.
+That writes the entry into `~/.config/opencode/opencode.jsonc`:
+
+```jsonc
+"plugins": [..., "opencode-jailbreak@git+https://github.com/Nergis0318/opencode-jailbreak.git"]
+```
+
+No dependencies are installed — the entry (`index.ts`, via `main`/`exports`)
+is loaded straight from the git checkout in opencode's package cache.
+After pushing new commits: `opencode plugin update opencode-jailbreak`.
+
+For local development against this checkout, point the config at the folder
+instead (`"/home/nergis/Dev/opencode-jailbreak"`); after editing plugin code,
+`opencode service restart`.
 
 ## Dev
 
