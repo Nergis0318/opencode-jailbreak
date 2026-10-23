@@ -4,7 +4,8 @@
   "type": "module",
   "main": "index.ts",
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./tui": "./tui.ts"
   },
   "scripts": {
     "test": "bun test",
@@ -12,6 +13,6 @@
   },
   "devDependencies": {
     "@opencode/plugin": "2.0.28",
-    "@types/bun": "^1.4.3"
+    "@types/bun": "^1.4.4"
   }
 }
