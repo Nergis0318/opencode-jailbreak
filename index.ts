@@ -66,6 +66,8 @@ export default {
               await ctx.session.synthetic({
                 sessionID: input.sessionID,
                 text: `Jailbreak ${state}.`,
+                description: `Jailbreak ${state}.`,
+                delivery: input.delivery ?? "steer",
                 resume: false,
               } as any)
             } catch (error) {
