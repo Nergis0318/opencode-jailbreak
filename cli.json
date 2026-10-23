@@ -1,0 +1,6 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "plugins": [
+    "opencode-jailbreak@git+https://github.com/Nergis0318/opencode-jailbreak.git"
+  ]
+}
