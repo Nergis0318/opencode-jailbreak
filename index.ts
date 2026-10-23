@@ -66,6 +66,7 @@ export default {
               await ctx.session.synthetic({
                 sessionID: input.sessionID,
                 text: `Jailbreak ${state}.`,
+                resume: false,
               } as any)
             } catch (error) {
               console.error("[opencode-jailbreaks]", error)
