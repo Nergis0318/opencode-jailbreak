@@ -12,7 +12,7 @@ appends it to the system message of the outgoing request.
   file contents are fetched from `raw.githubusercontent.com` once per model and
   cached in memory.
 - Injected per request only; nothing is written to session history or config.
-
+- `/jailbreak` toggles injection on/off (optional `on`/`off` argument).
 ## Install
 
 ```

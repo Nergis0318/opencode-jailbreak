@@ -25,7 +25,10 @@ export default {
 
     const content = new Map<string, string | null>() // model id -> text, null = no file, missing = unresolved
 
+    let enabled = true
+
     await ctx.session.hook("context", async (event) => {
+      if (!enabled) return
       try {
         const key = event.model.id
         let text = content.get(key)
@@ -46,5 +49,30 @@ export default {
         console.error("[opencode-jailbreaks]", error)
       }
     })
+
+    // /jailbreak toggles injection on/off (optional "on"/"off" argument).
+    if (ctx.command?.transform) {
+      await ctx.command.transform((editor) => {
+        editor.add({
+          name: "jailbreak",
+          description: "Toggle jailbreak injection on/off",
+          execute: async (input) => {
+            const arg = (input.prompt?.text ?? "").trim().toLowerCase()
+            if (arg === "on") enabled = true
+            else if (arg === "off") enabled = false
+            else enabled = !enabled
+            const state = enabled ? "on" : "off"
+            try {
+              await ctx.session.synthetic({
+                sessionID: input.sessionID,
+                text: `Jailbreak ${state}.`,
+              } as any)
+            } catch (error) {
+              console.error("[opencode-jailbreaks]", error)
+            }
+          },
+        })
+      })
+    }
   },
 }
